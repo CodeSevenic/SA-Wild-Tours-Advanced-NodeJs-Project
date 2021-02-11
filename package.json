@@ -1,0 +1,21 @@
+{
+  "name": "natours",
+  "version": "1.0.0",
+  "description": "Nodejs, express and MangoDB project",
+  "main": "app.js",
+  "scripts": {
+    "start:dev": "nodemon server.js",
+    "start:prod": "NODE_ENV=production nodemon server.js"
+  },
+  "author": "Sibusiso Shongwe",
+  "license": "ISC",
+  "dependencies": {
+    "console-clear": "^1.1.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.15",
+    "morgan": "^1.10.0",
+    "slugify": "^1.4.6",
+    "validator": "^13.5.2"
+  }
+}
