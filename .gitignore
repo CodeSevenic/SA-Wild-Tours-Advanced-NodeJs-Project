@@ -18,6 +18,7 @@ speed-measure-plugin*.json
 /.idea
 .project
 .classpath
+.env
 .c9/
 *.launch
 .settings/
@@ -43,4 +44,5 @@ testem.log
 
 # System Files
 .DS_Store
+.env
 Thumbs.db
