@@ -7,6 +7,7 @@ const router = express.Router();
 // User signup routes
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
+router.get('/logout', authController.logout);
 
 // User forgot and reset password routes
 router.post('/forgotPassword', authController.forgotPassword);
@@ -25,7 +26,10 @@ router.delete('/deleteMe', userController.deleteMe);
 router.use(authController.restrictTo('admin'));
 
 // Handling GET and POST users requests
-router.route('/').get(userController.getAllUsers).post(userController.createUsers);
+router
+  .route('/')
+  .get(userController.getAllUsers)
+  .post(userController.createUsers);
 
 // Handling GET and PATCH single user
 router
