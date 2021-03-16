@@ -1,7 +1,7 @@
-const Tour = require('../models/tourModel');
-const Booking = require('../models/bookingModel');
-const catchAsync = require('../utils/catchAsync');
-const AppError = require('../utils/appError');
+const Tour = require('./../models/tourModel');
+const Booking = require('./../models/bookingModel');
+const catchAsync = require('./../utils/catchAsync');
+const AppError = require('./../utils/appError');
 
 exports.getOverview = catchAsync(async (req, res, next) => {
   // 1) Get tour data from collection
