@@ -7,6 +7,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
+const cors = require('cors');
 
 const path = require('path');
 const AppError = require('./utils/appError');
@@ -26,6 +27,13 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 // GLOBAL MIDDLEWARE
+// Implement CORS
+app.use(cors());
+// Access-Control-Allow-Origin *
+
+// Allow further complex requests e.g patch, delete, update etc
+app.options('*', cors());
+// app.options('/api/v1/tours/:id', cors());
 
 // Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
