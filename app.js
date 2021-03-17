@@ -54,7 +54,7 @@ const limiter = rateLimit({
 });
 app.use('/api', limiter);
 
-// This is placed here because it's required to be not JSON
+// Stripe webhook, BEFORE body-parser, because stripe needs the body as stream
 app.post(
   '/webhook-checkout',
   express.raw({ type: 'application/json' }),
