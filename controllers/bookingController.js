@@ -32,25 +32,27 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     //     quantity: 1,
     //   },
     // ],
+
+    // line_items: [
+    //   {
+    //     price_data: {
+    //       currency: 'usd',
+    //       unit_amount: tour.price * 100,
+    //       product_data: {
+    //         name: `${tour.name} Tour`,
+    //         description: tour.summary,
+    //         images: [
+    //           `${req.protocol}://${req.get('host')}/img/tours/${
+    //             tour.imageCover
+    //           }`,
+    //         ],
+    //       },
+    //     },
+    //     quantity: 1,
+    //   },
+    // ],
+    line_items: [{ price: tour.price * 100, quantity: 1 }],
     mode: 'payment',
-    line_items: [
-      {
-        price_data: {
-          currency: 'usd',
-          unit_amount: tour.price * 100,
-          product_data: {
-            name: `${tour.name} Tour`,
-            description: tour.summary,
-            images: [
-              `${req.protocol}://${req.get('host')}/img/tours/${
-                tour.imageCover
-              }`,
-            ],
-          },
-        },
-        quantity: 1,
-      },
-    ],
   });
 
   // 3) Create session as response
@@ -77,11 +79,9 @@ const createBookingCheckout = async (session) => {
     expand: ['line_items'],
   });
 
-  const lineItems = session.line_items;
-
   const tour = session.client_reference_id;
   const user = (await User.findOne({ email: session.customer_email })).id;
-  const price = lineItems[0].price_data.unit_amount / 100;
+  const price = session.line_items[0].price / 100;
 
   await Booking.create({ tour, user, price });
 };
