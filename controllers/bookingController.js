@@ -32,7 +32,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     //     quantity: 1,
     //   },
     // ],
-
+    mode: 'payment',
     line_items: [
       {
         price_data: {
@@ -49,7 +49,6 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
           },
         },
         quantity: 1,
-        mode: 'payment',
       },
     ],
   });
